@@ -1,0 +1,25 @@
+{
+  "name": "nomikai-kanri",
+  "version": "1.0.0",
+  "description": "飲み会の日時・会場・参加者名簿・参加費の支払い有無を管理するアプリ",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js",
+    "test": "node test/api.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jx3t0shak1052-creator/eventmaster.git"
+  },
+  "keywords": ["飲み会", "参加費", "幹事", "nomikai", "express"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jx3t0shak1052-creator/eventmaster/issues"
+  },
+  "homepage": "https://github.com/jx3t0shak1052-creator/eventmaster#readme",
+  "dependencies": {
+    "express": "^4.22.3"
+  }
+}
