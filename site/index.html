@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>飲み会管理アプリ</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍻</text></svg>" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-emoji">🍻</span>
+        <div>
+          <h1>飲み会管理</h1>
+          <p class="tagline">日程・会場・参加者名簿・参加費の支払いをまとめて管理</p>
+        </div>
+      </div>
+      <button class="btn" id="new-event">＋ 新しい飲み会</button>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <input type="search" id="search" class="search" placeholder="🔍 飲み会名・会場で検索" />
+        <ul class="event-list" id="event-list"></ul>
+        <div class="sidebar-foot">
+          <button class="btn ghost small" id="empty-new">＋ 新しい飲み会</button>
+        </div>
+      </aside>
+
+      <section class="detail" id="detail">
+        <div class="placeholder">左の一覧から飲み会を選ぶか、新しい飲み会を追加してください。</div>
+      </section>
+    </main>
+  </div>
+
+  <!-- イベント作成・編集ダイアログ -->
+  <div class="dialog-backdrop" id="dialog-backdrop">
+    <div class="dialog" role="dialog" aria-modal="true">
+      <h2 id="dialog-title">新しい飲み会</h2>
+      <form id="event-form" autocomplete="off">
+        <label>飲み会名 <span class="req">*</span>
+          <input name="name" required maxlength="120" placeholder="例：歓迎会" />
+        </label>
+        <div class="row">
+          <label>日付
+            <input name="date" type="date" />
+          </label>
+          <label>時間
+            <input name="time" type="time" />
+          </label>
+        </div>
+        <label>会場
+          <input name="venue" maxlength="200" placeholder="例：居酒屋 太郎 新宿店" />
+        </label>
+        <label>参加費（1人あたり・円）
+          <input name="fee" type="number" min="0" step="100" value="0" />
+        </label>
+        <label>メモ
+          <textarea name="note" rows="3" maxlength="1000" placeholder="集合場所、二次会、注意事項など"></textarea>
+        </label>
+        <div class="dialog-actions">
+          <button type="button" class="btn ghost" id="dialog-cancel">キャンセル</button>
+          <button type="submit" class="btn">保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- サーバーAPIがある場合はサーバーモード、無い（静的配信）場合は
+       localStorage をデータ保存先にするフォールバックを読み込む -->
+  <script src="local-api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

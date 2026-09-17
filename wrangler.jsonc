@@ -1,0 +1,15 @@
+{
+  // Genspark マネージド Cloudflare へのホスティング用設定。
+  // worker.js をエントリポイントとし、site/ 以下の静的ファイルを ASSETS バインディングで配信する。
+  // アプリは localStorage をデータ保存先として動作するため、D1 / R2 / KV 等のバインディングは不要。
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nomikai-kanri",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-08",
+  "assets": {
+    "directory": "./site",
+    "binding": "ASSETS",
+    // SPA としてルーティング（未知のパスは index.html を返す）
+    "not_found_handling": "single-page-application"
+  }
+}
